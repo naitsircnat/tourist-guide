@@ -1,11 +1,21 @@
+let map = createMap("map", 1.3521, 103.8198);
+
 let hawkerLayer = L.layerGroup();
 let attractionsLayer = L.layerGroup();
 
-/*
-how to add layer control to outside of map
-https://gis.stackexchange.com/questions/186131/placing-controls-outside-map-container-with-leaflet
-*/
+// Search
+let searchBtn = document.querySelector("#search-btn");
 
+searchBtn.addEventListener("click", async function () {
+  let query = document.querySelector("#search-box").value;
+  let results = await search(1.3521, 103.8198, query);
+  console.log(query);
+  console.log(results);
+
+  addResultsToMap(results, map);
+});
+
+// Places layers
 async function getHawkerLayer() {
   let url = "data/hawker.geojson";
   let response = await axios.get(url);
@@ -74,15 +84,8 @@ async function getLayers(map) {
   setParent(htmlObject, a);
 }
 
+// Add places layers
 window.addEventListener("DOMContentLoaded", async function () {
-  var map = L.map("map").setView([1.3521, 103.8198], 12);
-
-  L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", {
-    maxZoom: 19,
-    attribution:
-      '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>',
-  }).addTo(map);
-
   await getLayers(map);
 });
 
@@ -93,7 +96,7 @@ PROJECT PHASES
 - ADD SEC FEATURES
 - CRAETE UI
 - RESPONSIVENESS
-- POLISH
+- POLISH & REFACTORING
 
 
 FEATURES/LAYOUT?
@@ -121,6 +124,8 @@ Menu items
 https://99designs.com.sg/profiles/276825/designs/459509
 can refer to london map site for other features
 
+Can link to resources in https://www.visitsingapore.com/travel-tips/travelling-to-singapore/itineraries/?cmp=SEM_STB-MA24-106-SG-SEM_SG_DC_ENG_NA_NA_NONE_BM-Itinerary%26GuidePA-GN_NA_GOOG_SEA_AO_Cross_XTG&gad_source=1&gclid=Cj0KCQiA6Ou5BhCrARIsAPoTxrCAEMNU7z34-DwLeNDcZayyKHOTNd2AHxfNYpAml3Pbs_c0EjvaG7caAnXXEALw_wcB&gclsrc=aw.ds
+
 
 RESOURCES
 - requirements: https://docs.google.com/document/d/1iVANh3aaqpX0VSFscP7j-86M1BOkAMGtOuJRmnYynD0/edit?tab=t.0#heading=h.5gcv0ns1dl74
@@ -128,7 +133,4 @@ RESOURCES
 - leaflet example tutorials: 
 https://leafletjs.com/examples.html
 https://docs.maptiler.com/leaflet/examples/
-
-
-
 */
