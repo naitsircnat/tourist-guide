@@ -1,6 +1,11 @@
 let hawkerLayer = L.layerGroup();
 let attractionsLayer = L.layerGroup();
 
+/*
+how to add layer control to outside of map
+https://gis.stackexchange.com/questions/186131/placing-controls-outside-map-container-with-leaflet
+*/
+
 async function getHawkerLayer() {
   let url = "data/hawker.geojson";
   let response = await axios.get(url);
@@ -75,6 +80,7 @@ PROJECT PHASES
 - RESEARCH IDEAS TO DECIDE UI LAYOUT
 - IMPLEMENT CORE FEATURES
 - CREATE UI
+- RESPONSIVENESS
 - POLISH
 
 
@@ -93,6 +99,8 @@ FEATURES/LAYOUT?
 --airports 
 
 - Can do custom search for places (Foursquare) - e.g. user's hotel or place of interest
+
+- can use custom icons for markers: https://leafletjs.com/examples/custom-icons/
 
 Menu items
 - history?
