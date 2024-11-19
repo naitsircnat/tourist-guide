@@ -20,7 +20,7 @@ async function getHawkerLayer() {
       color: "purple",
       fillColor: "purple",
       fillOpacity: 0.5,
-      radius: 700,
+      radius: 300,
     })
       .bindPopup(`<p>${obj.name}</p>`)
       .addTo(hawkerLayer);
@@ -41,7 +41,7 @@ async function getAttractionsLayer() {
       color: "green",
       fillColor: "green",
       fillOpacity: 0.5,
-      radius: 700,
+      radius: 300,
     })
       .bindPopup(`<p>${obj.name}</p>`)
       .addTo(attractionsLayer);
@@ -60,7 +60,18 @@ async function getLayers(map) {
     Attractions: attractionsLayer,
   };
 
-  L.control.layers(baseLayers, overlays).addTo(map);
+  var control = L.control.layers(baseLayers, overlays, { collapsed: false });
+  control.addTo(map);
+
+  var htmlObject = control.getContainer();
+
+  var a = document.getElementById("places");
+
+  function setParent(el, newParent) {
+    newParent.appendChild(el);
+  }
+
+  setParent(htmlObject, a);
 }
 
 window.addEventListener("DOMContentLoaded", async function () {
@@ -79,7 +90,8 @@ window.addEventListener("DOMContentLoaded", async function () {
 PROJECT PHASES
 - RESEARCH IDEAS TO DECIDE UI LAYOUT
 - IMPLEMENT CORE FEATURES
-- CREATE UI
+- ADD SEC FEATURES
+- CRAETE UI
 - RESPONSIVENESS
 - POLISH
 
