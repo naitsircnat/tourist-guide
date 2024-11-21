@@ -5,6 +5,21 @@ body {
 
 #map {
   height: 500px;
+  /* width: 70%;
+   */
+  flex-grow: 4;
+}
+
+main {
+  display: flex;
+}
+
+/* #places {
+  flex-grow: 1;
+} */
+
+#search {
+  flex-grow: 1;
 }
 
 body {
@@ -16,6 +31,7 @@ footer {
   display: flex;
   flex-direction: column;
   align-items: center;
+  background-color: grey;
   gap: 14px;
 }
 

@@ -2,6 +2,8 @@ let map = createMap("map", 1.3521, 103.8198);
 
 let hawkerLayer = L.layerGroup();
 let attractionsLayer = L.layerGroup();
+let supermarketsLayer = L.layerGroup();
+let marketsFoodCentresLayer = L.layerGroup();
 
 // Search
 let searchBtn = document.querySelector("#search-btn");
@@ -58,9 +60,31 @@ async function getAttractionsLayer() {
   }
 }
 
+async function getSupermarketsLayer() {
+  let url = "data/supermarkets.geojson";
+  let response = await axios.get(url);
+
+  console.log(response.data);
+
+  for (let obj of response.data.features) {
+    let lat = obj.geometry.coordinates[1];
+    let lng = obj.geometry.coordinates[0];
+
+    L.circle([lat, lng], {
+      color: "grey",
+      fillColor: "grey",
+      fillOpacity: 0.5,
+      radius: 300,
+    })
+      .bindPopup(`<p>${obj.name}</p>`)
+      .addTo(supermarketsLayer);
+  }
+}
+
 async function getLayers(map) {
   await getHawkerLayer();
   await getAttractionsLayer();
+  await getSupermarketsLayer();
 
   let baseLayers = {
     "Hawker Centres": hawkerLayer,
@@ -68,6 +92,7 @@ async function getLayers(map) {
 
   let overlays = {
     Attractions: attractionsLayer,
+    Supermarkets: supermarketsLayer,
   };
 
   var control = L.control.layers(baseLayers, overlays, { collapsed: false });
@@ -102,16 +127,15 @@ PROJECT PHASES
 FEATURES/LAYOUT?
 - map
 - selectors of what things to display
---attractions 
---hotels 
---nature 
---beaches 
---malls 
---transport 
---supermarket 
---hawker centres
---food (too many to display)
---airports 
+--tourist attractions x
+--hiking d
+--cycling d
+--parks and nature reserves d
+--hotels d 
+--mrt (https://gist.githubusercontent.com/raphodn/aca68c6e5b704d021fe0b0d8a376f4aa/raw/40d3d455da164bf8046a1fc6e51a5dc1ed2a0fa6/singapore-mrt.min.geojson) d
+--supermarket x
+--hawker centres x
+--market and food centre d
 
 - Can do custom search for places (Foursquare) - e.g. user's hotel or place of interest
 
@@ -121,10 +145,12 @@ Menu items
 - history?
 - economy?
 - geography?
-https://99designs.com.sg/profiles/276825/designs/459509
-can refer to london map site for other features
+can refer to london map site for other features: https://www.londoncitybreak.com/map
+
 
 Can link to resources in https://www.visitsingapore.com/travel-tips/travelling-to-singapore/itineraries/?cmp=SEM_STB-MA24-106-SG-SEM_SG_DC_ENG_NA_NA_NONE_BM-Itinerary%26GuidePA-GN_NA_GOOG_SEA_AO_Cross_XTG&gad_source=1&gclid=Cj0KCQiA6Ou5BhCrARIsAPoTxrCAEMNU7z34-DwLeNDcZayyKHOTNd2AHxfNYpAml3Pbs_c0EjvaG7caAnXXEALw_wcB&gclsrc=aw.ds
+
+Figma: https://www.figma.com/design/dQn0HsKKoXaMcMvrl5vLbI/SG-tourist-map?node-id=0-1&node-type=canvas&t=wVkyddyzdrAFMNPI-0
 
 
 RESOURCES
