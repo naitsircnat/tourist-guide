@@ -10,17 +10,46 @@ let bikingCnrLayer = L.layerGroup();
 let hikingCnrLayer = L.layerGroup();
 let parksNatureReservesLayer = L.layerGroup();
 
-// Search
+// with radius encompassing singapore
 let searchBtn = document.querySelector("#search-btn");
 
 searchBtn.addEventListener("click", async function () {
   let query = document.querySelector("#search-box").value;
-  let results = await search(1.3521, 103.8198, query);
-  console.log(query);
+
+  let near = document.querySelector("#near-box").value;
+
+  let results;
+
+  if (near.trim() == "") {
+    results = await searchGeneral(1.3521, 103.8198, query);
+  } else {
+    results = await searchNear(query, near);
+  }
+
   console.log(results);
+
+  resultsLayer.clearLayers();
 
   addResultsToMap(results, map);
 });
+
+// with near
+// let searchBtn = document.querySelector("#search-btn");
+
+// searchBtn.addEventListener("click", async function () {
+//   let query = document.querySelector("#search-box").value;
+
+//   let near = document.querySelector("#near-box").value;
+
+//   let results = await search(query, near);
+//   console.log(query);
+//   console.log(near);
+//   console.log(results);
+
+//   resultsLayer.clearLayers();
+
+//   addResultsToMap(results, map);
+// });
 
 // Places layers
 async function getHawkerLayer() {
@@ -146,8 +175,6 @@ async function getBikingCnrLayer() {
   let url = "data/biking-cnr.geojson";
   let response = await axios.get(url);
 
-  console.log(response.data);
-
   let layer = L.geoJson(response.data, {
     onEachFeature: function (feature, layer) {
       layer.bindPopup(feature.properties.name);
@@ -165,8 +192,6 @@ async function getHikingCnrLayer() {
   let url = "data/hiking-cnr.geojson";
   let response = await axios.get(url);
 
-  console.log(response.data);
-
   let layer = L.geoJson(response.data, {
     onEachFeature: function (feature, layer) {
       layer.bindPopup(feature.properties.name);
@@ -183,8 +208,6 @@ async function getHikingCnrLayer() {
 async function getParksNatureReservesLayer() {
   let url = "data/parks-nature-reserves.geojson";
   let response = await axios.get(url);
-
-  console.log(response.data);
 
   let layer = L.geoJson(response.data, {
     onEachFeature: function (feature, layer) {

@@ -9,9 +9,9 @@ function createMap(mapContainerID, lat, lng) {
   return map;
 }
 
-function addResultsToMap(results, map) {
-  let resultsLayer = L.layerGroup();
+let resultsLayer = L.layerGroup();
 
+function addResultsToMap(results, map) {
   for (let result of results.results) {
     let lat = result.geocodes.main.latitude;
     let lng = result.geocodes.main.longitude;

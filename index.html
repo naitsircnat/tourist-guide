@@ -78,17 +78,18 @@
       <div id="map"></div>
 
       <!-- Search -->
-      <ul class="nav flex-column">
-        <li class="nav-item">
-          <p>Find a place</p>
-        </li>
-        <li class="nav-item">
-          <input id="search-box" placeholder="Search"></input>
-          <button id="search-btn" class="btn btn-outline-success">
-                Search
-              </button>
-        </li>
-      </main>
+      <div class="nav flex-column">
+        <p>Find a place</p>
+        <input id="search-box" placeholder="Search"></input>
+        
+        <p>Near</p>
+        <input id="near-box"></input>
+        <button id="search-btn">Search
+        </button>
+      </div>
+
+
+    </main>
 
     <!-- Footer -->
     <footer class="container-fluid bg-black p-5">
@@ -156,6 +157,8 @@
     ></script>
     <!-- map -->
     <script src="map.js"></script>
+    <!-- search -->
+     <script src="search.js"></script>
     <!-- data -->
     <script src="data.js"></script>
     <!-- <script src="data.js"></script> -->
