@@ -15,7 +15,8 @@ main {
 }
 
 #places {
-  width: fit-content;
+  flex-basis: 320px;
+  /* width: fit-content; */
 }
 
 #map {
@@ -23,10 +24,11 @@ main {
 }
 
 #find {
-  width: fit-content;
+  /* width: fit-content; */
+  flex-basis: 350px;
 }
 
-button {
+#search-btn {
   background-color: #09ab9c !important;
 }
 
