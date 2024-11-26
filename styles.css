@@ -3,23 +3,31 @@ body {
   margin: 0;
 }
 
-#map {
-  height: 500px;
-  /* width: 70%;
-   */
-  flex-grow: 4;
+.navbar-brand {
+  font-family: Arial, Helvetica, sans-serif;
+  color: #b9475c !important;
+  font-weight: 600;
+  font-size: 32px;
 }
 
 main {
   display: flex;
 }
 
-/* #places {
-  flex-grow: 1;
-} */
+#places {
+  width: fit-content;
+}
 
-#search {
-  flex-grow: 1;
+#map {
+  height: 500px;
+}
+
+#find {
+  width: fit-content;
+}
+
+button {
+  background-color: #09ab9c !important;
 }
 
 body {
@@ -31,7 +39,7 @@ footer {
   display: flex;
   flex-direction: column;
   align-items: center;
-  background-color: grey;
+  background-color: #b9475c;
   gap: 14px;
 }
 
@@ -42,7 +50,7 @@ footer {
 footer p {
   font-size: 12px;
   font-weight: 100;
-  color: black;
+  color: whitesmoke;
   text-align: center;
 }
 
@@ -54,6 +62,7 @@ footer p {
 
 footer a {
   text-decoration: none;
+  color: whitesmoke;
 }
 
 .socials {

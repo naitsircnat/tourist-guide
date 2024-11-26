@@ -310,6 +310,11 @@ Can link to resources in
 Layouts/MoodBoard:
 Figma: https://www.figma.com/design/dQn0HsKKoXaMcMvrl5vLbI/SG-tourist-map?node-id=0-1&node-type=canvas&t=wVkyddyzdrAFMNPI-0
 
+Brand Name:
+- ExploreSingapore
+- ExploreSG
+- Discover Singapore
+- HelloSingapore
 
 RESOURCES
 - requirements: https://docs.google.com/document/d/1iVANh3aaqpX0VSFscP7j-86M1BOkAMGtOuJRmnYynD0/edit?tab=t.0#heading=h.5gcv0ns1dl74
