@@ -28,7 +28,7 @@ searchBtn.addEventListener("click", async function () {
 
   console.log(results);
 
-  resultsLayer.clearLayers();
+  // resultsLayer.clearLayers();
 
   addResultsToMap(results, map);
 });

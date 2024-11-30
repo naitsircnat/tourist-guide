@@ -3,7 +3,6 @@ const API_KEY = "fsq3nVm3/H75FWiXw0E7cysCDXelkbkAfUSN7R9m3jpO8Cc=";
 
 // with radius encompassing singapore
 async function searchGeneral(lat, lng, searchTerms) {
-  console.log("test");
   const response = await axios.get(`${BASE_API_URL}/places/search`, {
     params: {
       query: encodeURI(searchTerms), //encodeURI is used to convert special characters to their encoded eqv so that query will be wellformed

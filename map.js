@@ -12,10 +12,19 @@ function createMap(mapContainerID, lat, lng) {
 let resultsLayer = L.layerGroup();
 
 function addResultsToMap(results, map) {
+  resultsLayer.clearLayers();
+
+  const searchResultsContainer = document.querySelector("#search-results");
+  searchResultsContainer.innerHTML = "";
+
   for (let result of results.results) {
     let lat = result.geocodes.main.latitude;
     let lng = result.geocodes.main.longitude;
     L.marker([lat, lng]).addTo(resultsLayer);
+
+    const searchResultElement = document.createElement("div");
+    searchResultElement.textContent = result.name;
+    searchResultsContainer.appendChild(searchResultElement);
   }
 
   resultsLayer.addTo(map);
