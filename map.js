@@ -20,7 +20,26 @@ function addResultsToMap(results, map) {
   for (let result of results.results) {
     let lat = result.geocodes.main.latitude;
     let lng = result.geocodes.main.longitude;
-    L.marker([lat, lng]).addTo(resultsLayer);
+
+    // let marker = L.marker([lat, lng]).bindPopup("test");
+
+    // let marker = L.marker([lat, lng]).bindPopup(function () {
+    //   const divElement = document.createElement("div");
+    //   divElement.innerHTML = `<h3>${result.location.name}</h3>`;
+    // });
+
+    let popUpHtml = document.createElement("div");
+
+    popUpHtml.innerHTML = `
+      <h5>${result.name}</h5>
+      <p>${result.location.address}</p>
+    `;
+
+    // let marker = L.marker([lat, lng]).bindPopup(result.name);
+
+    let marker = L.marker([lat, lng]).bindPopup(popUpHtml);
+
+    marker.addTo(resultsLayer);
 
     // card
     const cardHtml = `<div class="card" style="width: 18rem;">
@@ -31,10 +50,6 @@ function addResultsToMap(results, map) {
 </div>`;
 
     searchResultsContainer.innerHTML += cardHtml;
-
-    // const searchResultElement = document.createElement("div");
-    // searchResultElement.textContent = result.name;
-    // searchResultsContainer.appendChild(searchResultElement);
   }
 
   resultsLayer.addTo(map);

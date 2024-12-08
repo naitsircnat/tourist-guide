@@ -77,13 +77,20 @@ async function getAttractionsLayer() {
   let url = "data/attractions.geojson";
   let response = await axios.get(url);
 
+  let hawkerIcon = L.icon({
+    iconUrl: "/icons/attractions.png",
+    iconSize: [30, 30],
+    iconAnchor: [22, 94],
+    popUpAnchor: [-3, -76],
+  });
+
   console.log(response.data);
 
   for (let obj of response.data.features) {
     let lat = obj.geometry.coordinates[1];
     let lng = obj.geometry.coordinates[0];
 
-    L.marker([lat, lng])
+    L.marker([lat, lng], { icon: hawkerIcon })
       .bindPopup(`<p>${obj.properties.Description}</p>`)
       .addTo(attractionsLayer);
   }
@@ -318,6 +325,9 @@ Brand Name:
 - ExploreSG
 - Discover Singapore
 - HelloSingapore
+
+Icons:
+Remember to Attribute!
 
 RESOURCES
 - requirements: https://docs.google.com/document/d/1iVANh3aaqpX0VSFscP7j-86M1BOkAMGtOuJRmnYynD0/edit?tab=t.0#heading=h.5gcv0ns1dl74
