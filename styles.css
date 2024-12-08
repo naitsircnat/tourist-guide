@@ -7,7 +7,7 @@ body {
   font-family: Arial, Helvetica, sans-serif;
   color: #b9475c !important;
   font-weight: 600;
-  font-size: 32px;
+  font-size: 36px;
 }
 
 main {
@@ -17,6 +17,10 @@ main {
 #places {
   flex-basis: 400px;
   /* width: fit-content; */
+}
+
+label:hover {
+  background-color: #eee0b7;
 }
 
 #map {
@@ -29,7 +33,11 @@ main {
 }
 
 #search-btn {
-  background-color: #09ab9c !important;
+  background-color: #09ab9c;
+}
+
+#search-btn:hover {
+  background-color: #b9475c;
 }
 
 #search-results {
@@ -79,7 +87,7 @@ footer a {
 
 @media screen and (min-width: 768px) {
   footer {
-    height: 280px;
+    height: 200px;
     gap: 36px;
   }
 

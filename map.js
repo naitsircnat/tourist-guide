@@ -17,6 +17,13 @@ function addResultsToMap(results, map) {
   const searchResultsContainer = document.querySelector("#search-results");
   searchResultsContainer.innerHTML = "";
 
+  let findIcon = L.icon({
+    iconUrl: "/icons/find.png",
+    iconSize: [30, 30],
+    iconAnchor: [22, 94],
+    popUpAnchor: [-3, -76],
+  });
+
   for (let result of results.results) {
     let lat = result.geocodes.main.latitude;
     let lng = result.geocodes.main.longitude;
@@ -37,7 +44,7 @@ function addResultsToMap(results, map) {
 
     // let marker = L.marker([lat, lng]).bindPopup(result.name);
 
-    let marker = L.marker([lat, lng]).bindPopup(popUpHtml);
+    let marker = L.marker([lat, lng], { icon: findIcon }).bindPopup(popUpHtml);
 
     marker.addTo(resultsLayer);
 

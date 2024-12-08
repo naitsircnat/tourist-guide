@@ -16,5 +16,6 @@ hiking: <a href="https://www.flaticon.com/free-icons/hiking" title="hiking icons
 
 parks & nature reserves: <a href="https://www.flaticon.com/free-icons/tree" title="tree icons">Tree icons created by Freepik - Flaticon</a>
 
+search icon: <a href="https://www.flaticon.com/free-icons/binoculars" title="binoculars icons">Binoculars icons created by Freepik - Flaticon</a>
 
 

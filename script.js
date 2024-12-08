@@ -84,15 +84,32 @@ async function getAttractionsLayer() {
     popUpAnchor: [-3, -76],
   });
 
+  let hoverHawkerIcon = L.icon({
+    iconUrl: "/icons/attractions.png",
+    iconSize: [45, 45],
+    iconAnchor: [30, 100],
+    popUpAnchor: [-3, -76],
+  });
+
   console.log(response.data);
 
   for (let obj of response.data.features) {
     let lat = obj.geometry.coordinates[1];
     let lng = obj.geometry.coordinates[0];
 
-    L.marker([lat, lng], { icon: hawkerIcon })
-      .bindPopup(`<p>${obj.properties.Description}</p>`)
-      .addTo(attractionsLayer);
+    const marker = L.marker([lat, lng], { icon: hawkerIcon }).bindPopup(
+      `<p>${obj.properties.Description}</p>`
+    );
+
+    marker.on("mouseover", function () {
+      this.setIcon(hoverHawkerIcon);
+    });
+
+    marker.on("mouseout", function () {
+      this.setIcon(hawkerIcon);
+    });
+
+    marker.addTo(attractionsLayer);
   }
 
   /*
