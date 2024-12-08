@@ -15,7 +15,7 @@ main {
 }
 
 #places {
-  flex-basis: 320px;
+  flex-basis: 400px;
   /* width: fit-content; */
 }
 
@@ -30,6 +30,11 @@ main {
 
 #search-btn {
   background-color: #09ab9c !important;
+}
+
+#search-results {
+  max-height: 260px;
+  overflow-y: scroll;
 }
 
 body {

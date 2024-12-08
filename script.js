@@ -77,21 +77,24 @@ async function getAttractionsLayer() {
   let url = "data/attractions.geojson";
   let response = await axios.get(url);
 
-  // console.log(response.data);
+  console.log(response.data);
 
   for (let obj of response.data.features) {
     let lat = obj.geometry.coordinates[1];
     let lng = obj.geometry.coordinates[0];
 
-    L.circle([lat, lng], {
-      color: "green",
-      fillColor: "green",
-      fillOpacity: 0.5,
-      radius: 300,
-    })
-      .bindPopup(`<p>${obj.name}</p>`)
+    L.marker([lat, lng])
+      .bindPopup(`<p>${obj.properties.Description}</p>`)
       .addTo(attractionsLayer);
   }
+
+  /*
+  to show:
+  - image
+  - name
+  - address
+  - website
+  */
 }
 
 async function getSupermarketsLayer() {

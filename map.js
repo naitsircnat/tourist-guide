@@ -22,9 +22,19 @@ function addResultsToMap(results, map) {
     let lng = result.geocodes.main.longitude;
     L.marker([lat, lng]).addTo(resultsLayer);
 
-    const searchResultElement = document.createElement("div");
-    searchResultElement.textContent = result.name;
-    searchResultsContainer.appendChild(searchResultElement);
+    // card
+    const cardHtml = `<div class="card" style="width: 18rem;">
+  <div class="card-body">
+    <h5 class="card-title">${result.name}</h5>
+    <p class="card-text">${result.location.address}</p>
+  </div>
+</div>`;
+
+    searchResultsContainer.innerHTML += cardHtml;
+
+    // const searchResultElement = document.createElement("div");
+    // searchResultElement.textContent = result.name;
+    // searchResultsContainer.appendChild(searchResultElement);
   }
 
   resultsLayer.addTo(map);
