@@ -38,21 +38,12 @@ function addResultsToMap(results, map) {
     let lat = result.geocodes.main.latitude;
     let lng = result.geocodes.main.longitude;
 
-    // let marker = L.marker([lat, lng]).bindPopup("test");
-
-    // let marker = L.marker([lat, lng]).bindPopup(function () {
-    //   const divElement = document.createElement("div");
-    //   divElement.innerHTML = `<h3>${result.location.name}</h3>`;
-    // });
-
     let popUpHtml = document.createElement("div");
 
     popUpHtml.innerHTML = `
       <h5>${result.name}</h5>
       <p>${result.location.address}</p>
     `;
-
-    // let marker = L.marker([lat, lng]).bindPopup(result.name);
 
     let marker = L.marker([lat, lng], { icon: findIcon }).bindPopup(popUpHtml);
 

@@ -10,7 +10,6 @@ let bikingCnrLayer = L.layerGroup();
 let hikingCnrLayer = L.layerGroup();
 let parksNatureReservesLayer = L.layerGroup();
 
-// with radius encompassing singapore
 let searchBtn = document.querySelector("#search-btn");
 
 searchBtn.addEventListener("click", async function () {
@@ -31,25 +30,69 @@ searchBtn.addEventListener("click", async function () {
   addResultsToMap(results, map);
 });
 
+var icon = L.Icon.extend({
+  options: {
+    iconSize: [25, 25],
+    iconAnchor: [22, 94],
+    popUpAnchor: [-3, -76],
+  },
+});
+
+var hoverIcon = L.Icon.extend({
+  options: {
+    iconSize: [40, 40],
+    iconAnchor: [30, 100],
+    popUpAnchor: [-3, -76],
+  },
+});
+
 // Places layers
+
+//REFERENCE
 async function getHawkerLayer() {
   let url = "data/hawker.geojson";
   let response = await axios.get(url);
 
-  // console.log(response.data);
+  console.log(response.data);
+
+  var hawkerIcon = new icon({ iconUrl: "/icons/hawker.png" });
+  var hoverHawkerIcon = new hoverIcon({
+    iconUrl: "/icons/hawker.png",
+  });
 
   for (let obj of response.data.features) {
     let lat = obj.geometry.coordinates[1];
     let lng = obj.geometry.coordinates[0];
 
-    L.circle([lat, lng], {
-      color: "purple",
-      fillColor: "purple",
-      fillOpacity: 0.5,
-      radius: 300,
-    })
-      .bindPopup(`<p>${obj.name}</p>`)
-      .addTo(hawkerLayer);
+    let e = document.createElement("div");
+    e.innerHTML = obj.properties.Description;
+    let tds = e.querySelectorAll("td");
+
+    const name = tds[9].innerHTML;
+    const address = tds[13].innerHTML;
+
+    const popUpDescription = document.createElement("div");
+
+    popUpDescription.innerHTML = `<h6>${name}</h6><p>${address}`;
+
+    const marker = L.marker([lat, lng], { icon: hawkerIcon }).bindPopup(
+      popUpDescription
+    );
+
+    marker.on("mouseover", function () {
+      this.setIcon(hoverHawkerIcon);
+    });
+
+    marker.on("mouseout", function () {
+      this.setIcon(hawkerIcon);
+    });
+
+    marker.addEventListener("click", function () {
+      map.flyTo([lat, lng], 16);
+      marker.openPopup;
+    });
+
+    marker.addTo(hawkerLayer);
   }
 }
 
@@ -57,21 +100,10 @@ async function getAttractionsLayer() {
   let url = "data/attractions.geojson";
   let response = await axios.get(url);
 
-  let attractionsIcon = L.icon({
+  var attractionsIcon = new icon({ iconUrl: "/icons/attractions.png" });
+  var hoverAttractionsIcon = new hoverIcon({
     iconUrl: "/icons/attractions.png",
-    iconSize: [30, 30],
-    iconAnchor: [22, 94],
-    popUpAnchor: [-3, -76],
   });
-
-  let hoverattractionsIcon = L.icon({
-    iconUrl: "/icons/attractions.png",
-    iconSize: [45, 45],
-    iconAnchor: [30, 100],
-    popUpAnchor: [-3, -76],
-  });
-
-  console.log(response.data);
 
   for (let obj of response.data.features) {
     let lat = obj.geometry.coordinates[1];
@@ -94,7 +126,7 @@ async function getAttractionsLayer() {
     );
 
     marker.on("mouseover", function () {
-      this.setIcon(hoverattractionsIcon);
+      this.setIcon(hoverAttractionsIcon);
     });
 
     marker.on("mouseout", function () {
@@ -108,34 +140,70 @@ async function getAttractionsLayer() {
 
     marker.addTo(attractionsLayer);
   }
-
-  /*
-  to show:
-  - image
-  - name
-  - address
-  - website
-  */
 }
+//REFERENCE
 
 async function getSupermarketsLayer() {
   let url = "data/supermarkets.geojson";
   let response = await axios.get(url);
 
-  // console.log(response.data);
+  var supermarketIcon = new icon({ iconUrl: "/icons/supermarket.png" });
+  var hoverSupermarketIcon = new hoverIcon({
+    iconUrl: "/icons/supermarket.png",
+  });
+
+  console.log(response.data);
 
   for (let obj of response.data.features) {
     let lat = obj.geometry.coordinates[1];
     let lng = obj.geometry.coordinates[0];
 
-    L.circle([lat, lng], {
-      color: "grey",
-      fillColor: "grey",
-      fillOpacity: 0.5,
-      radius: 300,
-    })
-      .bindPopup(`<p>${obj.name}</p>`)
-      .addTo(supermarketsLayer);
+    let e = document.createElement("div");
+    e.innerHTML = obj.properties.Description;
+    let tds = e.querySelectorAll("td");
+
+    const name = tds[0].innerHTML;
+    const block = tds[1].innerHTML;
+    const street = tds[2].innerHTML;
+    // Some locations don't have a unit number
+    var unit = tds[3].innerHTML;
+    const postalCode = tds[4].innerHTML;
+
+    if (!unit) {
+      unit = "-";
+    }
+
+    const popUpDescription = document.createElement("div");
+
+    popUpDescription.innerHTML = `<h6>${name}</h6><p>BLK ${block}, ${street}, UNIT ${unit}, (S) ${postalCode}</p>`;
+
+    const marker = L.marker([lat, lng], { icon: supermarketIcon }).bindPopup(
+      popUpDescription
+    );
+
+    marker.on("mouseover", function () {
+      this.setIcon(hoverSupermarketIcon);
+    });
+
+    marker.on("mouseout", function () {
+      this.setIcon(supermarketIcon);
+    });
+
+    marker.addEventListener("click", function () {
+      map.flyTo([lat, lng], 16);
+      marker.openPopup;
+    });
+
+    marker.addTo(supermarketsLayer);
+
+    // L.circle([lat, lng], {
+    //   color: "grey",
+    //   fillColor: "grey",
+    //   fillOpacity: 0.5,
+    //   radius: 300,
+    // })
+    //   .bindPopup(`<p>${obj.name}</p>`)
+    //   .addTo(supermarketsLayer);
   }
 }
 
@@ -257,11 +325,8 @@ async function getLayers(map) {
   await getHikingCnrLayer();
   await getParksNatureReservesLayer();
 
-  let baseLayers = {
-    "Hawker Centres": hawkerLayer,
-  };
-
   let overlays = {
+    "Hawker Centres": hawkerLayer,
     Attractions: attractionsLayer,
     Supermarkets: supermarketsLayer,
     "Markets & Food Centres": marketsFoodCentresLayer,
@@ -272,7 +337,7 @@ async function getLayers(map) {
     "Parks & Nature Reserves": parksNatureReservesLayer,
   };
 
-  var control = L.control.layers(baseLayers, overlays, { collapsed: false });
+  var control = L.control.layers(null, overlays, { collapsed: false });
   control.addTo(map);
 
   var htmlObject = control.getContainer();
