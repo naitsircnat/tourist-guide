@@ -49,15 +49,21 @@ function addResultsToMap(results, map) {
 
     marker.addTo(resultsLayer);
 
-    // card
-    const cardHtml = `<div class="card" style="width: 18rem;">
-  <div class="card-body">
-    <h5 class="card-title">${result.name}</h5>
-    <p class="card-text">${result.location.address}</p>
-  </div>
-</div>`;
+    const card = document.createElement("div");
 
-    searchResultsContainer.innerHTML += cardHtml;
+    card.innerHTML = `<div class="card" style="width: 18rem;">
+      <div class="card-body">
+        <h5 class="card-title">${result.name}</h5>
+        <p class="card-text">${result.location.address}</p>
+      </div>
+    </div>`;
+
+    card.addEventListener("click", function () {
+      map.flyTo([lat, lng], 16);
+      marker.openPopup();
+    });
+
+    searchResultsContainer.appendChild(card);
   }
 
   resultsLayer.addTo(map);
