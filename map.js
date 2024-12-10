@@ -15,13 +15,22 @@ let resultsLayer = L.layerGroup();
 function addResultsToMap(results, map) {
   resultsLayer.clearLayers();
 
+  map.flyTo([1.3521, 103.8198], 12);
+
   const searchResultsContainer = document.querySelector("#search-results");
   searchResultsContainer.innerHTML = "";
 
   let findIcon = L.icon({
     iconUrl: "/icons/find.png",
-    iconSize: [30, 30],
+    iconSize: [25, 25],
     iconAnchor: [22, 94],
+    popUpAnchor: [-3, -76],
+  });
+
+  let hoverFindIcon = L.icon({
+    iconUrl: "/icons/find.png",
+    iconSize: [40, 40],
+    iconAnchor: [30, 100],
     popUpAnchor: [-3, -76],
   });
 
@@ -46,6 +55,19 @@ function addResultsToMap(results, map) {
     // let marker = L.marker([lat, lng]).bindPopup(result.name);
 
     let marker = L.marker([lat, lng], { icon: findIcon }).bindPopup(popUpHtml);
+
+    marker.addEventListener("mouseover", function () {
+      this.setIcon(hoverFindIcon);
+    });
+
+    marker.addEventListener("mouseout", function () {
+      this.setIcon(findIcon);
+    });
+
+    marker.addEventListener("click", function () {
+      map.flyTo([lat, lng], 16);
+      marker.openPopup;
+    });
 
     marker.addTo(resultsLayer);
 

@@ -28,28 +28,8 @@ searchBtn.addEventListener("click", async function () {
 
   console.log(results);
 
-  // resultsLayer.clearLayers();
-
   addResultsToMap(results, map);
 });
-
-// with near
-// let searchBtn = document.querySelector("#search-btn");
-
-// searchBtn.addEventListener("click", async function () {
-//   let query = document.querySelector("#search-box").value;
-
-//   let near = document.querySelector("#near-box").value;
-
-//   let results = await search(query, near);
-//   console.log(query);
-//   console.log(near);
-//   console.log(results);
-
-//   resultsLayer.clearLayers();
-
-//   addResultsToMap(results, map);
-// });
 
 // Places layers
 async function getHawkerLayer() {
@@ -77,14 +57,14 @@ async function getAttractionsLayer() {
   let url = "data/attractions.geojson";
   let response = await axios.get(url);
 
-  let hawkerIcon = L.icon({
+  let attractionsIcon = L.icon({
     iconUrl: "/icons/attractions.png",
     iconSize: [30, 30],
     iconAnchor: [22, 94],
     popUpAnchor: [-3, -76],
   });
 
-  let hoverHawkerIcon = L.icon({
+  let hoverattractionsIcon = L.icon({
     iconUrl: "/icons/attractions.png",
     iconSize: [45, 45],
     iconAnchor: [30, 100],
@@ -109,16 +89,21 @@ async function getAttractionsLayer() {
 
     popUpDescription.innerHTML = `<h6>${name}</h6><p>${address}</p><i>${description}</i></p>`;
 
-    const marker = L.marker([lat, lng], { icon: hawkerIcon }).bindPopup(
+    const marker = L.marker([lat, lng], { icon: attractionsIcon }).bindPopup(
       popUpDescription
     );
 
     marker.on("mouseover", function () {
-      this.setIcon(hoverHawkerIcon);
+      this.setIcon(hoverattractionsIcon);
     });
 
     marker.on("mouseout", function () {
-      this.setIcon(hawkerIcon);
+      this.setIcon(attractionsIcon);
+    });
+
+    marker.addEventListener("click", function () {
+      map.flyTo([lat, lng], 16);
+      marker.openPopup;
     });
 
     marker.addTo(attractionsLayer);
