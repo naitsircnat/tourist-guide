@@ -33,16 +33,12 @@ searchBtn.addEventListener("click", async function () {
 var icon = L.Icon.extend({
   options: {
     iconSize: [25, 25],
-    iconAnchor: [22, 94],
-    popUpAnchor: [-3, -76],
   },
 });
 
 var hoverIcon = L.Icon.extend({
   options: {
     iconSize: [40, 40],
-    iconAnchor: [30, 100],
-    popUpAnchor: [-3, -76],
   },
 });
 
@@ -195,21 +191,19 @@ async function getSupermarketsLayer() {
     });
 
     marker.addTo(supermarketsLayer);
-
-    // L.circle([lat, lng], {
-    //   color: "grey",
-    //   fillColor: "grey",
-    //   fillOpacity: 0.5,
-    //   radius: 300,
-    // })
-    //   .bindPopup(`<p>${obj.name}</p>`)
-    //   .addTo(supermarketsLayer);
   }
 }
 
 async function getMarketsFoodCentresLayer() {
   let url = "data/markets-food-centres.geojson";
   let response = await axios.get(url);
+
+  var marketsFoodCentresIcon = new icon({
+    iconUrl: "/icons/markets-food-centres.png",
+  });
+  var hoverMarketsFoodCentresIcon = new hoverIcon({
+    iconUrl: "/icons/markets-food-centres.png",
+  });
 
   for (let obj of response.data.features) {
     let lat = obj.geometry.coordinates[1];
@@ -414,4 +408,9 @@ RESOURCES
 - leaflet example tutorials: 
 https://leafletjs.com/examples.html
 https://docs.maptiler.com/leaflet/examples/
+
+PENDING
+- validation for search result addresses, some showing undefined
+- keep icons parameters for search consistent with those in places section
+
 */
