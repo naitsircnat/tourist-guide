@@ -97,8 +97,20 @@ async function getAttractionsLayer() {
     let lat = obj.geometry.coordinates[1];
     let lng = obj.geometry.coordinates[0];
 
+    let e = document.createElement("div");
+    e.innerHTML = obj.properties.Description;
+    let tds = e.querySelectorAll("td");
+
+    const name = tds[4].innerHTML;
+    const address = tds[8].innerHTML;
+    const description = tds[10].innerHTML;
+
+    const popUpDescription = document.createElement("div");
+
+    popUpDescription.innerHTML = `<h6>${name}</h6><p>${address}</p><i>${description}</i></p>`;
+
     const marker = L.marker([lat, lng], { icon: hawkerIcon }).bindPopup(
-      `<p>${obj.properties.Description}</p>`
+      popUpDescription
     );
 
     marker.on("mouseover", function () {
