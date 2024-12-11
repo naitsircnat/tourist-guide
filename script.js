@@ -198,6 +198,8 @@ async function getMarketsFoodCentresLayer() {
   let url = "data/markets-food-centres.geojson";
   let response = await axios.get(url);
 
+  console.log(response.data);
+
   var marketsFoodCentresIcon = new icon({
     iconUrl: "/icons/markets-food-centres.png",
   });
@@ -209,14 +211,35 @@ async function getMarketsFoodCentresLayer() {
     let lat = obj.geometry.coordinates[1];
     let lng = obj.geometry.coordinates[0];
 
-    L.circle([lat, lng], {
-      color: "grey",
-      fillColor: "grey",
-      fillOpacity: 0.5,
-      radius: 300,
-    })
-      .bindPopup(`<p>${obj.name}</p>`)
-      .addTo(marketsFoodCentresLayer);
+    let e = document.createElement("div");
+    e.innerHTML = obj.properties.Description;
+    let tds = e.querySelectorAll("td");
+
+    const name = tds[7].innerHTML;
+    const address = tds[6].innerHTML;
+
+    const popUpDescription = document.createElement("div");
+
+    popUpDescription.innerHTML = `<h6>${name}</h6><p>${address}</p>`;
+
+    const marker = L.marker([lat, lng], {
+      icon: marketsFoodCentresIcon,
+    }).bindPopup(popUpDescription);
+
+    marker.on("mouseover", function () {
+      this.setIcon(hoverMarketsFoodCentresIcon);
+    });
+
+    marker.on("mouseout", function () {
+      this.setIcon(marketsFoodCentresIcon);
+    });
+
+    marker.addEventListener("click", function () {
+      map.flyTo([lat, lng], 16);
+      marker.openPopup;
+    });
+
+    marker.addTo(marketsFoodCentresLayer);
   }
 }
 
