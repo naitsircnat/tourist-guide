@@ -371,9 +371,11 @@ async function getHikingCnrLayer() {
   let url = "data/hiking-cnr.geojson";
   let response = await axios.get(url);
 
+  console.log(response.data);
+
   let layer = L.geoJson(response.data, {
     onEachFeature: function (feature, layer) {
-      layer.bindPopup(feature.properties.name);
+      layer.bindPopup(`<p>Central Nature Reserve Hiking Trail</p>`);
     },
   });
 
