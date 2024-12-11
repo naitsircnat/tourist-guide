@@ -20,12 +20,12 @@ async function search(lat, lng, searchTerms) {
   return response.data;
 }
 
-// async function getPhotoFromFourSquare(fsqId) {
-//   const response = await axios.get(`${BASE_API_URL}/places/${fsqId}/photos`, {
-//     headers: {
-//       Accept: "application.json",
-//       Authorization: API_KEY,
-//     },
-//   });
-//   return response.data;
-// }
+async function getPhotoFromFourSquare(fsqId) {
+  const response = await axios.get(`${BASE_API_URL}/places/${fsqId}/photos`, {
+    headers: {
+      Accept: "application.json",
+      Authorization: API_KEY,
+    },
+  });
+  return response.data;
+}
