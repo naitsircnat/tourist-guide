@@ -247,18 +247,56 @@ async function getHotelsLayer() {
   let url = "data/hotels.geojson";
   let response = await axios.get(url);
 
+  console.log(response.data);
+
+  var hotelsIcon = new icon({ iconUrl: "/icons/hotel.png" });
+  var hoverHotelsIcon = new hoverIcon({
+    iconUrl: "/icons/hotel.png",
+  });
+
   for (let obj of response.data.features) {
     let lat = obj.geometry.coordinates[1];
     let lng = obj.geometry.coordinates[0];
 
-    L.circle([lat, lng], {
-      color: "orange",
-      fillColor: "orange",
-      fillOpacity: 0.5,
-      radius: 300,
-    })
-      .bindPopup(`<p>${obj.name}</p>`)
-      .addTo(hotelsLayer);
+    let e = document.createElement("div");
+    e.innerHTML = obj.properties.Description;
+    let tds = e.querySelectorAll("td");
+
+    const name = tds[8].innerHTML;
+    const address = tds[5].innerHTML;
+    const postalCode = tds[2].innerHTML;
+
+    const popUpDescription = document.createElement("div");
+
+    popUpDescription.innerHTML = `<h6>${name}</h6><p>${address}, (S) ${postalCode}</p>`;
+
+    const marker = L.marker([lat, lng], { icon: hotelsIcon }).bindPopup(
+      popUpDescription
+    );
+
+    marker.on("mouseover", function () {
+      this.setIcon(hoverHotelsIcon);
+    });
+
+    marker.on("mouseout", function () {
+      this.setIcon(hotelsIcon);
+    });
+
+    marker.addEventListener("click", function () {
+      map.flyTo([lat, lng], 16);
+      marker.openPopup;
+    });
+
+    marker.addTo(hotelsLayer);
+
+    // L.circle([lat, lng], {
+    //   color: "orange",
+    //   fillColor: "orange",
+    //   fillOpacity: 0.5,
+    //   radius: 300,
+    // })
+    //   .bindPopup(`<p>${obj.name}</p>`)
+    //   .addTo(hotelsLayer);
   }
 }
 
