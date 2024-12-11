@@ -305,14 +305,44 @@ async function getMrtLayer() {
     "https://gist.githubusercontent.com/raphodn/aca68c6e5b704d021fe0b0d8a376f4aa/raw/40d3d455da164bf8046a1fc6e51a5dc1ed2a0fa6/singapore-mrt.min.geojson";
   let response = await axios.get(url);
 
+  var mrtIcon = new icon({ iconUrl: "/icons/mrt.png" });
+  var hoverMrtIcon = new hoverIcon({
+    iconUrl: "/icons/mrt.png",
+  });
+
+  // let layer = L.geoJson(response.data, {
+  //   onEachFeature: function (feature, layer) {
+  //     layer.bindPopup(feature.properties.name);
+  //   },
+  // });
+
   let layer = L.geoJson(response.data, {
+    pointToLayer: function (feature, latlng) {
+      let marker = L.marker(latlng, { icon: mrtIcon });
+
+      marker.on("mouseover", function () {
+        this.setIcon(hoverMrtIcon);
+      });
+
+      marker.on("mouseout", function () {
+        this.setIcon(mrtIcon);
+      });
+
+      return marker;
+    },
     onEachFeature: function (feature, layer) {
       layer.bindPopup(feature.properties.name);
+
+      layer.on("click", function (e) {
+        if (feature.geometry.type === "Point") {
+          map.flyTo(e.latlng, 16);
+        }
+      });
     },
   });
 
   layer.setStyle({
-    color: "brown",
+    color: "grey",
   });
 
   layer.addTo(mrtLayer);
@@ -322,9 +352,11 @@ async function getBikingCnrLayer() {
   let url = "data/biking-cnr.geojson";
   let response = await axios.get(url);
 
+  console.log(response.data);
+
   let layer = L.geoJson(response.data, {
     onEachFeature: function (feature, layer) {
-      layer.bindPopup(feature.properties.name);
+      layer.bindPopup(`<p>Central Nature Reserve Biking Trail</p>`);
     },
   });
 
@@ -471,7 +503,7 @@ https://leafletjs.com/examples.html
 https://docs.maptiler.com/leaflet/examples/
 
 PENDING
-- validation for search result addresses, some showing undefined
+- validation for search result addresses and places, some showing undefined. use if()?
 - keep icons parameters for search consistent with those in places section
 
 */
