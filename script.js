@@ -361,7 +361,7 @@ async function getBikingCnrLayer() {
   });
 
   layer.setStyle({
-    color: "green",
+    color: "brown",
   });
 
   layer.addTo(bikingCnrLayer);
