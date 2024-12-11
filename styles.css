@@ -15,9 +15,8 @@ label:hover {
 }
 
 #map {
-  display: block;
   height: 500px;
-  width: 300px;
+  width: 100%;
 }
 
 #search-btn {
@@ -31,6 +30,7 @@ label:hover {
 #search-results {
   max-height: 260px;
   overflow-y: scroll;
+  width: 100%;
 }
 
 body {
@@ -74,6 +74,10 @@ footer a {
 }
 
 @media screen and (min-width: 768px) {
+  /* #places {
+    width: 100%;
+  } */
+
   footer {
     height: 200px;
     gap: 36px;

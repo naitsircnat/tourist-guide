@@ -66,7 +66,7 @@ function addResultsToMap(results, map) {
 
     card.innerHTML = `<div class="card" style="width: 18rem;">
       <div class="card-body">
-        <h5 class="card-title">${result.name}</h5>
+        <h6 class="card-title">${result.name}</h6>
         <p class="card-text">${result.location.address}</p>
       </div>
     </div>`;

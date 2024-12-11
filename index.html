@@ -51,30 +51,33 @@
       </div>
     </nav>
 
-    <main class="container">
+    <main class="container-fluid row p-0 gx-3">
       
-      <div class="container col-md-3">  
+      <!-- places -->
+      <section class="container col-md-2">  
         <div id="places"></div>
-      </div>    
+      </section>    
 
       <!-- map -->
-      <div class="container col-md-6">
-        <div id="map"></div>
-      </div>
 
-      <!-- Search -->    
-      <div id="find" class="container col-md-3">
-        <div class="nav flex-column">
+      <section class="container col-md-8">
+        <div id="map"></div>
+      </section>
+
+      <!-- Search --> 
+       <section class="container col-md-2 mt-2">
+        <div id="find">
           <p>Find something<p>
           <input id="search-box"></input>          
           <p>Near (optional)</p>
           <input id="near-box"></input>
           <br>
+          <br>
           <button id="search-btn" type="button" class="btn btn-success">Let's Go</button>
-        <div class="container mt-4 px-0" id="search-results">
-        </div>  
+          <div class="mt-4 px-0" id="search-results"></div>  
         </div>
-      </div>
+      </section>  
+
     </main>
 
     <!-- Footer -->
