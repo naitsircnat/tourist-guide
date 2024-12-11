@@ -10,26 +10,14 @@ body {
   font-size: 36px;
 }
 
-main {
-  display: flex;
-}
-
-#places {
-  flex-basis: 400px;
-  /* width: fit-content; */
-}
-
 label:hover {
   background-color: #eee0b7;
 }
 
 #map {
+  display: block;
   height: 500px;
-}
-
-#find {
-  /* width: fit-content; */
-  flex-basis: 380px;
+  width: 300px;
 }
 
 #search-btn {

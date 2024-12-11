@@ -352,8 +352,6 @@ async function getBikingCnrLayer() {
   let url = "data/biking-cnr.geojson";
   let response = await axios.get(url);
 
-  console.log(response.data);
-
   let layer = L.geoJson(response.data, {
     onEachFeature: function (feature, layer) {
       layer.bindPopup(`<p>Central Nature Reserve Biking Trail</p>`);
@@ -370,8 +368,6 @@ async function getBikingCnrLayer() {
 async function getHikingCnrLayer() {
   let url = "data/hiking-cnr.geojson";
   let response = await axios.get(url);
-
-  console.log(response.data);
 
   let layer = L.geoJson(response.data, {
     onEachFeature: function (feature, layer) {
