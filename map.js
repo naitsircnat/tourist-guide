@@ -31,18 +31,9 @@ function addResultsToMap(results, map) {
   const searchResultsContainer = document.querySelector("#search-results");
   searchResultsContainer.innerHTML = "";
 
-  let findIcon = L.icon({
+  var findIcon = new icon({ iconUrl: "/icons/find.png" });
+  var hoverFindIcon = new hoverIcon({
     iconUrl: "/icons/find.png",
-    iconSize: [25, 25],
-    iconAnchor: [22, 94],
-    popUpAnchor: [-3, -76],
-  });
-
-  let hoverFindIcon = L.icon({
-    iconUrl: "/icons/find.png",
-    iconSize: [40, 40],
-    iconAnchor: [30, 100],
-    popUpAnchor: [-3, -76],
   });
 
   for (let result of results.results) {

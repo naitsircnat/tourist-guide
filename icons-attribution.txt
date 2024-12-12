@@ -1,21 +1,31 @@
-hawker: <a href="https://www.flaticon.com/free-icons/biryani" title="biryani icons">Biryani icons created by Freepik - Flaticon</a>
+hawker: 
+<a href="https://www.flaticon.com/free-icons/biryani" title="biryani icons">Biryani icons created by Freepik - Flaticon</a>
 
-attractions: <a href="https://www.flaticon.com/free-icons/funfair" title="funfair icons">Funfair icons created by Freepik - Flaticon</a>
+attractions: 
+<a href="https://www.flaticon.com/free-icons/fair" title="fair icons">Fair icons created by Freepik - Flaticon</a>
 
-supermarket: <a href="https://www.flaticon.com/free-icons/trolley" title="trolley icons">Trolley icons created by Freepik - Flaticon</a>
+supermarket: 
+<a href="https://www.flaticon.com/free-icons/trolley" title="trolley icons">Trolley icons created by Freepik - Flaticon</a>
 
-markets & food centres: <a href="https://www.flaticon.com/free-icons/vegetables" title="vegetables icons">Vegetables icons created by Freepik - Flaticon</a>
+markets & food centres: 
+<a href="https://www.flaticon.com/free-icons/vegetables" title="vegetables icons">Vegetables icons created by Freepik - Flaticon</a>
 
-hotels: <a href="https://www.flaticon.com/free-icons/hotel" title="hotel icons">Hotel icons created by Freepik - Flaticon</a>
+hotels: 
+<a href="https://www.flaticon.com/free-icons/hotel" title="hotel icons">Hotel icons created by Freepik - Flaticon</a>
 
-mrt: <a href="https://www.flaticon.com/free-icons/train" title="train icons">Train icons created by Freepik - Flaticon</a>
+mrt: 
+<a href="https://www.flaticon.com/free-icons/train" title="train icons">Train icons created by Freepik - Flaticon</a>
 
-cycling: <a href="https://www.flaticon.com/free-icons/bike" title="bike icons">Bike icons created by Freepik - Flaticon</a>
+cycling: 
+<a href="https://www.flaticon.com/free-icons/bike" title="bike icons">Bike icons created by Freepik - Flaticon</a>
 
-hiking: <a href="https://www.flaticon.com/free-icons/hiking" title="hiking icons">Hiking icons created by Freepik - Flaticon</a>
+hiking: 
+<a href="https://www.flaticon.com/free-icons/hiking" title="hiking icons">Hiking icons created by Freepik - Flaticon</a>
 
-parks & nature reserves: <a href="https://www.flaticon.com/free-icons/tree" title="tree icons">Tree icons created by Freepik - Flaticon</a>
+parks & nature reserves: 
+<a href="https://www.flaticon.com/free-icons/tree" title="tree icons">Tree icons created by Freepik - Flaticon</a>
 
-search icon: <a href="https://www.flaticon.com/free-icons/binoculars" title="binoculars icons">Binoculars icons created by Freepik - Flaticon</a>
+search icon: 
+<a href="https://www.flaticon.com/free-icons/binoculars" title="binoculars icons">Binoculars icons created by Freepik - Flaticon</a>
 
 

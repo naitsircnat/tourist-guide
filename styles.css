@@ -14,11 +14,7 @@ label:hover {
   width: 100%;
 }
 
-/* #search {
-  height: 100%;
-} */
-
-#find {
+#search {
   margin-left: 10px;
 }
 
@@ -33,13 +29,14 @@ label:hover {
 #search-results {
   max-height: 35vh;
   overflow-y: scroll;
-  margin-left: 10px;
   width: 100%;
 }
 
-body {
-  padding: 0;
-  margin: 0;
+.card:hover {
+  background-color: #e2c36b;
+  color: white;
+  cursor: pointer;
+  border: none;
 }
 
 footer {
@@ -86,8 +83,11 @@ footer a {
     margin: 0px;
   }
 
+  #search {
+    margin-left: 0px;
+  }
+
   footer {
-    /* height: auto; */
     gap: 36px;
   }
 
@@ -99,12 +99,12 @@ footer a {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    gap: 200px;
+    gap: 400px;
   }
 
   .about,
   .quicklinks,
-  .contact {
+  .credits {
     flex-grow: 1;
     flex-shrink: 1;
   }

@@ -502,7 +502,6 @@ https://docs.maptiler.com/leaflet/examples/
 
 PENDING
 - validation for search result addresses and places, some showing undefined. use if()?
-- keep icons parameters for search consistent with those in places section
 - add ghosts text for text inputs etc.
-
+- pop-up images for places
 */
