@@ -19,6 +19,7 @@ let getPhotoFromFoursquare = async (fsqId) => {
       Authorization: API_KEY,
     },
   });
+  console.log(response.data);
   return response.data;
 };
 
@@ -54,23 +55,24 @@ function addResultsToMap(results, map) {
 
         popUpHtml.innerHTML = `
         <h5>${result.name}</h5>
-        <img src="#""/>
+        <img src="#"/>
         <p>${result.location.address}</p>
       `;
         async function getPicture() {
-          const photos = await getPhotoFromFoursquare(location.fsqId);
+          const photos = await getPhotoFromFoursquare(result.fsq_id);
           if (photos && photos.length > 0) {
             const firstPhoto = photos[0];
-            const photoUrl = firstPhoto.prefix + "150x150" + firstPhoto.suffix;
-            divElement.querySelector("img").src = photoUrl;
-            divElement.querySelector("img").style.display = "block";
+            const photoUrl = firstPhoto.prefix + "120x120" + firstPhoto.suffix;
+            popUpHtml.querySelector("img").src = photoUrl;
+            popUpHtml.querySelector("img").style.display = "block";
           }
         }
 
         getPicture();
 
         return popUpHtml;
-      }
+      },
+      { minWidth: 150 }
     );
 
     marker.addEventListener("mouseover", function () {
