@@ -12,6 +12,16 @@ function createMap(mapContainerID, lat, lng) {
 
 let resultsLayer = L.layerGroup();
 
+let getPhotoFromFoursquare = async (fsqId) => {
+  const response = await axios.get(`${BASE_API_URL}/places/${fsqId}/photos`, {
+    headers: {
+      Accept: "application/json",
+      Authorization: API_KEY,
+    },
+  });
+  return response.data;
+};
+
 function addResultsToMap(results, map) {
   resultsLayer.clearLayers();
 
@@ -38,14 +48,30 @@ function addResultsToMap(results, map) {
     let lat = result.geocodes.main.latitude;
     let lng = result.geocodes.main.longitude;
 
-    let popUpHtml = document.createElement("div");
+    let marker = L.marker([lat, lng], { icon: findIcon }).bindPopup(
+      function () {
+        let popUpHtml = document.createElement("div");
 
-    popUpHtml.innerHTML = `
-      <h5>${result.name}</h5>
-      <p>${result.location.address}</p>
-    `;
+        popUpHtml.innerHTML = `
+        <h5>${result.name}</h5>
+        <img src="#""/>
+        <p>${result.location.address}</p>
+      `;
+        async function getPicture() {
+          const photos = await getPhotoFromFoursquare(location.fsqId);
+          if (photos && photos.length > 0) {
+            const firstPhoto = photos[0];
+            const photoUrl = firstPhoto.prefix + "150x150" + firstPhoto.suffix;
+            divElement.querySelector("img").src = photoUrl;
+            divElement.querySelector("img").style.display = "block";
+          }
+        }
 
-    let marker = L.marker([lat, lng], { icon: findIcon }).bindPopup(popUpHtml);
+        getPicture();
+
+        return popUpHtml;
+      }
+    );
 
     marker.addEventListener("mouseover", function () {
       this.setIcon(hoverFindIcon);
