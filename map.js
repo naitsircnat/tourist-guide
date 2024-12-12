@@ -54,8 +54,8 @@ function addResultsToMap(results, map) {
         let popUpHtml = document.createElement("div");
 
         popUpHtml.innerHTML = `
-        <h5>${result.name}</h5>
-        <img src="#"/>
+        <h6>${result.name}</h6>
+        <img src="#" style="display:none"/>
         <p>${result.location.address}</p>
       `;
         async function getPicture() {
@@ -92,7 +92,7 @@ function addResultsToMap(results, map) {
 
     const card = document.createElement("div");
 
-    card.innerHTML = `<div class="card" style="width: 18rem;">
+    card.innerHTML = `<div class="card mb-2" style="width: 18rem;">
       <div class="card-body">
         <h6 class="card-title">${result.name}</h6>
         <p class="card-text">${result.location.address}</p>

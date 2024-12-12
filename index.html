@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Singapore Tourist Guide</title>
+    <title>hellosingapore | Discover Singapore effortlessly</title>
     <!-- leaflet -->
     <link
       rel="stylesheet"
@@ -51,35 +51,34 @@
       </div>
     </nav>
 
-    <div class="flex-wrapper">
-      <main class="container-fluid row p-0 gx-3">
-        
-        <!-- places -->
-        <section class="container col-md-2">  
-          <div id="places"></div>
-        </section>    
+    <main class="container-fluid row p-0 gx-3">
+      
+      <!-- places -->
+      <section class="container col-md-2">  
+        <div id="places"></div>
+      </section>    
 
-        <!-- map -->
+      <!-- map -->
 
-        <section class="container col-md-8">
-          <div id="map"></div>
-        </section>
+      <section class="container col-md-8">
+        <div id="map"></div>
+      </section>
 
-        <!-- Search --> 
-        <section class="container col-md-2 mt-2">
-          <div id="find">
-            <p>Find something<p>
-            <input id="search-box"></input>          
-            <p>Near (optional)</p>
-            <input id="near-box"></input>
-            <br>
-            <br>
-            <button id="search-btn" type="button" class="btn btn-success">Let's Go</button>
-            <div class="mt-4 px-0" id="search-results"></div>  
-          </div>
-        </section>  
+      <!-- Search --> 
+      <section id="search" class="container col-md-2 mt-2">
+        <div id="find">
+          <p>Find something<p>
+          <input id="search-box"></input>          
+          <p>Near (optional)</p>
+          <input id="near-box"></input>
+          <br>
+          <br>
+          <button id="search-btn" type="button" class="btn btn-success">Let's Go</button>
+        </div>
+        <div class="mt-4" id="search-results"></div>  
+      </section>  
 
-      </main>
+    </main>
 
       <!-- Footer -->
       <footer class="container-fluid bg-black p-5">
@@ -87,21 +86,15 @@
           <div class="about">
             <p class="footer-subtitle">HELLOSINGAPORE</p>
             <p class="footer-description">
-              Fur-Real Pizza delivers happiness with vet-approved, all-natural
-              ingredients. From cheesy to meaty favorites, each pizza is made with
-              love and delivered fresh.
+              Plan your perfect day in Singapore with hellosingapore – an interactive map guiding you to our city's wonderful offerings!
             </p>
           </div>
 
           <div class="contact">
             <p class="footer-subtitle">CREDITS</p>
-            <p><a href="#">fur-real@pizza.com</a></p>
-            <p>+65 1234 5678</p>
+            <a class="credit" href="https://www.flaticon.com/free-icons/biryani" title="biryani icons">Biryani icons created by Freepik - Flaticon</a>
           </div>
         </div>
-      </div>
-
-      
     </footer>
 
     <!-- axios -->
@@ -136,5 +129,4 @@
     <script src="script.js"></script>
   </body>
 </html>
-
 
