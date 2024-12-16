@@ -148,8 +148,6 @@ async function getSupermarketsLayer() {
     iconUrl: "/icons/supermarket.png",
   });
 
-  console.log(response.data);
-
   for (let obj of response.data.features) {
     let lat = obj.geometry.coordinates[1];
     let lng = obj.geometry.coordinates[0];
@@ -198,8 +196,6 @@ async function getMarketsFoodCentresLayer() {
   let url = "data/markets-food-centres.geojson";
   let response = await axios.get(url);
 
-  console.log(response.data);
-
   var marketsFoodCentresIcon = new icon({
     iconUrl: "/icons/markets-food-centres.png",
   });
@@ -246,8 +242,6 @@ async function getMarketsFoodCentresLayer() {
 async function getHotelsLayer() {
   let url = "data/hotels.geojson";
   let response = await axios.get(url);
-
-  console.log(response.data);
 
   var hotelsIcon = new icon({ iconUrl: "/icons/hotel.png" });
   var hoverHotelsIcon = new hoverIcon({
@@ -309,12 +303,6 @@ async function getMrtLayer() {
   var hoverMrtIcon = new hoverIcon({
     iconUrl: "/icons/mrt.png",
   });
-
-  // let layer = L.geoJson(response.data, {
-  //   onEachFeature: function (feature, layer) {
-  //     layer.bindPopup(feature.properties.name);
-  //   },
-  // });
 
   let layer = L.geoJson(response.data, {
     pointToLayer: function (feature, latlng) {
@@ -385,6 +373,8 @@ async function getHikingCnrLayer() {
 async function getParksNatureReservesLayer() {
   let url = "data/parks-nature-reserves.geojson";
   let response = await axios.get(url);
+
+  console.log(response.data);
 
   let layer = L.geoJson(response.data, {
     onEachFeature: function (feature, layer) {
