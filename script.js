@@ -49,8 +49,6 @@ async function getHawkerLayer() {
   let url = "data/hawker.geojson";
   let response = await axios.get(url);
 
-  console.log(response.data);
-
   var hawkerIcon = new icon({ iconUrl: "/icons/hawker.png" });
   var hoverHawkerIcon = new hoverIcon({
     iconUrl: "/icons/hawker.png",
@@ -282,15 +280,6 @@ async function getHotelsLayer() {
     });
 
     marker.addTo(hotelsLayer);
-
-    // L.circle([lat, lng], {
-    //   color: "orange",
-    //   fillColor: "orange",
-    //   fillOpacity: 0.5,
-    //   radius: 300,
-    // })
-    //   .bindPopup(`<p>${obj.name}</p>`)
-    //   .addTo(hotelsLayer);
   }
 }
 
@@ -378,7 +367,17 @@ async function getParksNatureReservesLayer() {
 
   let layer = L.geoJson(response.data, {
     onEachFeature: function (feature, layer) {
-      layer.bindPopup(feature.properties.name);
+      let e = document.createElement("div");
+      e.innerHTML = feature.properties.Description;
+      let tds = e.querySelectorAll("td");
+
+      const name = tds[1].innerHTML;
+
+      const popUpDescription = document.createElement("div");
+
+      popUpDescription.innerHTML = `<p>${name}</p>`;
+
+      layer.bindPopup(popUpDescription);
     },
   });
 
