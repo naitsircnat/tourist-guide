@@ -18,6 +18,11 @@ label:hover {
   margin-left: 10px;
 }
 
+#search-box,
+#near-box {
+  border-radius: 0.25rem;
+}
+
 #search-btn {
   background-color: #09ab9c;
 }
