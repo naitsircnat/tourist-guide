@@ -5,8 +5,16 @@
   font-size: 36px;
 }
 
+label {
+  /* color: green; */
+}
+
 label:hover {
   background-color: #eee0b7;
+}
+
+.leaflet-control-layers {
+  box-shadow: none;
 }
 
 #map {

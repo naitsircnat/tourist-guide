@@ -425,6 +425,13 @@ async function getLayers(map) {
   setParent(htmlObject, a);
 }
 
+// add styling for places selectors
+const placesLabels = document.querySelectorAll("label");
+
+placesLabels.forEach((element) => {
+  element.classList.add("card");
+});
+
 // Add places layers
 window.addEventListener("DOMContentLoaded", async function () {
   await getLayers(map);
@@ -493,4 +500,7 @@ PENDING
 - validation for search result addresses and places, some showing undefined. use if()?
 - add ghosts text for text inputs etc.
 - pop-up images for places
+- use better fonts
+- improve ui for search pop-up;
+- refactoring
 */
