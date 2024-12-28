@@ -414,6 +414,7 @@ async function getLayers(map) {
   var control = L.control.layers(null, overlays, { collapsed: false });
   control.addTo(map);
 
+  // Move places selectors to outside of map
   var htmlObject = control.getContainer();
 
   var a = document.getElementById("places");
@@ -424,13 +425,6 @@ async function getLayers(map) {
 
   setParent(htmlObject, a);
 }
-
-// add styling for places selectors
-const placesLabels = document.querySelectorAll("label");
-
-placesLabels.forEach((element) => {
-  element.classList.add("card");
-});
 
 // Add places layers
 window.addEventListener("DOMContentLoaded", async function () {
@@ -500,7 +494,8 @@ PENDING
 - validation for search result addresses and places, some showing undefined. use if()?
 - add ghosts text for text inputs etc.
 - pop-up images for places
-- use better fonts
 - improve ui for search pop-up;
+- nav bar layout for desktop and mobile
+- adjust colours for geojson
 - refactoring
 */

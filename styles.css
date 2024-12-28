@@ -5,17 +5,25 @@
   font-size: 36px;
 }
 
-label {
-  /* color: green; */
+body {
+  font-family: "Helvetica Neue", Arial, sans-serif;
 }
 
 label:hover {
   background-color: #eee0b7;
 }
 
+.leaflet-control-layers-selector:checked {
+  background-color: #eee0b7;
+}
+
 .leaflet-control-layers {
   box-shadow: none;
 }
+
+/* .leaflet-control-layers-selector {
+  display: none;
+} */
 
 #map {
   height: 70vh;
@@ -29,6 +37,10 @@ label:hover {
 #search-box,
 #near-box {
   border-radius: 0.25rem;
+}
+
+.form-control {
+  width: 70%;
 }
 
 #search-btn {

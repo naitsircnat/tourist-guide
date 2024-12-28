@@ -56,7 +56,8 @@
       <!-- places -->
       <section class="container col-md-2">  
         <div id="places"></div>
-      </section>    
+      </section>
+          
 
       <!-- map -->
 
@@ -67,12 +68,14 @@
       <!-- Search --> 
       <section id="search" class="container col-md-2 mt-2">
         <div id="find">
-          <p>Find something<p>
-          <input id="search-box"></input>          
-          <p>Near (optional)</p>
-          <input id="near-box"></input>
-          <br>
-          <br>
+          <div class="mb-3">
+            <label class="form-label">Find something</label>
+            <input class="form-control" id="search-box">
+
+          <div class="mb-3 mt-3">
+            <label class="form-label">Near (optional)</label>
+            <input class="form-control" id="near-box">
+          </div>
           <button id="search-btn" type="button" class="btn btn-success">Let's Go</button>
         </div>
         <div class="mt-4" id="search-results"></div>  
