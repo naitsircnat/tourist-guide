@@ -498,4 +498,6 @@ PENDING
 - nav bar layout for desktop and mobile
 - adjust colours for geojson
 - refactoring
+- include opening hours for each pop-up
+- show message if no search results
 */
