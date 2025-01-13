@@ -44,24 +44,23 @@ function addResultsToMap(results, map) {
       function () {
         let popUpHtml = document.createElement("div");
 
-        //   popUpHtml.innerHTML = `
-        //   <h6>${result.name}</h6>
-        //   <img src="#" style="display:none"/>
-        //   <p>${result.location.address}</p>
-        // `;
-
         popUpHtml.innerHTML = `
         <h6>${result.name}</h6>
-        <p>Address: ${result.location.formatted_address}</p>
-        <p>Rating: ${result.rating}</p>
-        <p>Description: ${result.description}</p>
-        <p>Hours: ${result.hours.display}</p>
+        <img src="#" style="display:none"/>
+        <p><b>About</b>: ${
+          result.description == null ? "-" : result.description
+        }</p>
+        <p><b>Address</b>: ${result.location.formatted_address}</p>
+        <p><b>Rating</b>: ${result.rating == null ? "-" : result.rating}</p>
+        <p><b>Opening Hours</b>: ${
+          result.hours.display == null ? "-" : result.hours.display
+        }</p>
       `;
         async function getPicture() {
           const photos = await getPhotoFromFoursquare(result.fsq_id);
           if (photos && photos.length > 0) {
             const firstPhoto = photos[0];
-            const photoUrl = firstPhoto.prefix + "120x120" + firstPhoto.suffix;
+            const photoUrl = firstPhoto.prefix + "280x180" + firstPhoto.suffix;
             popUpHtml.querySelector("img").src = photoUrl;
             popUpHtml.querySelector("img").style.display = "block";
           }
@@ -71,7 +70,7 @@ function addResultsToMap(results, map) {
 
         return popUpHtml;
       },
-      { minWidth: 250 }
+      { minWidth: 300 }
     );
 
     marker.addEventListener("mouseover", function () {
@@ -91,10 +90,12 @@ function addResultsToMap(results, map) {
 
     const card = document.createElement("div");
 
-    card.innerHTML = `<div class="card mb-2" style="width: 18rem;">
+    card.innerHTML = `<div class="card mb-2" style="width: 280px">
       <div class="card-body">
         <h6 class="card-title">${result.name}</h6>
-        <p class="card-text">${result.location.address}</p>
+        <p class="card-text">${
+          result.location.address == null ? "-" : result.location.address
+        }</p>
       </div>
     </div>`;
 

@@ -491,13 +491,11 @@ STUFF TO INCLUDE IN POP-UP
 
 
 PENDING
-- validation for search result addresses and places, some showing undefined. use if()?
-- add ghosts text for text inputs etc.
-- pop-up images for places
-- improve ui for search pop-up;
+- offset for search pop-up flyto
+- pop-up images for places? available?
 - nav bar layout for desktop and mobile
+- carousel image for search pop up?
+- add ghosts text for text inputs etc.
 - adjust colours for geojson
 - refactoring
-- include opening hours for each pop-up
-- show message if no search results
 */
