@@ -455,8 +455,6 @@ FEATURES/LAYOUT?
 --market and food centre x
 Do clustering too if needed
 
-- Can do custom search for places (Foursquare) - e.g. user's hotel or place of interest
-
 - can use custom icons for markers: https://leafletjs.com/examples/custom-icons/
 
 Menu items
@@ -474,21 +472,23 @@ Can link to resources in
 Layouts/MoodBoard:
 Figma: https://www.figma.com/design/dQn0HsKKoXaMcMvrl5vLbI/SG-tourist-map?node-id=0-1&node-type=canvas&t=wVkyddyzdrAFMNPI-0
 
-Brand Name:
-- ExploreSingapore
-- ExploreSG
-- Discover Singapore
-- HelloSingapore
-
-Icons:
-Remember to Attribute!
-
 RESOURCES
 - requirements: https://docs.google.com/document/d/1iVANh3aaqpX0VSFscP7j-86M1BOkAMGtOuJRmnYynD0/edit?tab=t.0#heading=h.5gcv0ns1dl74
 - foursquare search functionality: https://scrawny-dingo-56a.notion.site/Foursquare-Leaflet-5c1bb194ca094dce895e7c02d8ae83d5
 - leaflet example tutorials: 
 https://leafletjs.com/examples.html
 https://docs.maptiler.com/leaflet/examples/
+
+STUFF TO INCLUDE IN POP-UP
+- NAME
+- RATING
+- IMAGE
+- DESCRIPTION
+- ADDRESS
+- OPENING HOURS
+- SOCIAL MEDIA
+
+
 
 PENDING
 - validation for search result addresses and places, some showing undefined. use if()?

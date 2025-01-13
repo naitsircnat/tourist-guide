@@ -63,7 +63,7 @@ function addResultsToMap(results, map) {
 
         return popUpHtml;
       },
-      { minWidth: 150 }
+      { minWidth: 250 }
     );
 
     marker.addEventListener("mouseover", function () {
