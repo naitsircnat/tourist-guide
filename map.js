@@ -44,10 +44,18 @@ function addResultsToMap(results, map) {
       function () {
         let popUpHtml = document.createElement("div");
 
+        //   popUpHtml.innerHTML = `
+        //   <h6>${result.name}</h6>
+        //   <img src="#" style="display:none"/>
+        //   <p>${result.location.address}</p>
+        // `;
+
         popUpHtml.innerHTML = `
         <h6>${result.name}</h6>
-        <img src="#" style="display:none"/>
-        <p>${result.location.address}</p>
+        <p>Address: ${result.location.formatted_address}</p>
+        <p>Rating: ${result.rating}</p>
+        <p>Description: ${result.description}</p>
+        <p>Hours: ${result.hours.display}</p>
       `;
         async function getPicture() {
           const photos = await getPhotoFromFoursquare(result.fsq_id);

@@ -18,7 +18,7 @@ async function searchGeneral(lat, lng, searchTerms) {
       sort: "DISTANCE",
       radius: 22500,
       limit: 50,
-      fields: "name,rating,description,social_media,location,hours",
+      fields: "name,rating,description,social_media,location,hours,geocodes",
     },
     headers: {
       Accept: "application/json",
