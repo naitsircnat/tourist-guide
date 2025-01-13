@@ -432,15 +432,6 @@ window.addEventListener("DOMContentLoaded", async function () {
 });
 
 /*
-PROJECT PHASES
-- RESEARCH IDEAS TO DECIDE UI LAYOUT
-- IMPLEMENT CORE FEATURES
-- ADD SEC FEATURES
-- CRAETE UI
-- RESPONSIVENESS
-- POLISH & REFACTORING
-
-
 FEATURES/LAYOUT?
 - map
 - selectors of what things to display
@@ -492,6 +483,8 @@ STUFF TO INCLUDE IN POP-UP
 
 PENDING
 - offset for search pop-up flyto
+- remove hover effect for Find Something and Near
+- increase footer text size
 - pop-up images for places? available?
 - nav bar layout for desktop and mobile
 - carousel image for search pop up?
