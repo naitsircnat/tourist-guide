@@ -49,9 +49,9 @@ async function getHawkerLayer() {
   let url = "data/hawker.geojson";
   let response = await axios.get(url);
 
-  var hawkerIcon = new icon({ iconUrl: "/icons/hawker.png" });
+  var hawkerIcon = new icon({ iconUrl: "./icons/hawker.png" });
   var hoverHawkerIcon = new hoverIcon({
-    iconUrl: "/icons/hawker.png",
+    iconUrl: "./icons/hawker.png",
   });
 
   for (let obj of response.data.features) {
@@ -94,9 +94,9 @@ async function getAttractionsLayer() {
   let url = "data/attractions.geojson";
   let response = await axios.get(url);
 
-  var attractionsIcon = new icon({ iconUrl: "/icons/attractions.png" });
+  var attractionsIcon = new icon({ iconUrl: "./icons/attractions.png" });
   var hoverAttractionsIcon = new hoverIcon({
-    iconUrl: "/icons/attractions.png",
+    iconUrl: "./icons/attractions.png",
   });
 
   for (let obj of response.data.features) {
@@ -141,9 +141,9 @@ async function getSupermarketsLayer() {
   let url = "data/supermarkets.geojson";
   let response = await axios.get(url);
 
-  var supermarketIcon = new icon({ iconUrl: "/icons/supermarket.png" });
+  var supermarketIcon = new icon({ iconUrl: "./icons/supermarket.png" });
   var hoverSupermarketIcon = new hoverIcon({
-    iconUrl: "/icons/supermarket.png",
+    iconUrl: "./icons/supermarket.png",
   });
 
   for (let obj of response.data.features) {
@@ -195,10 +195,10 @@ async function getMarketsFoodCentresLayer() {
   let response = await axios.get(url);
 
   var marketsFoodCentresIcon = new icon({
-    iconUrl: "/icons/markets-food-centres.png",
+    iconUrl: "./icons/markets-food-centres.png",
   });
   var hoverMarketsFoodCentresIcon = new hoverIcon({
-    iconUrl: "/icons/markets-food-centres.png",
+    iconUrl: "./icons/markets-food-centres.png",
   });
 
   for (let obj of response.data.features) {
@@ -241,9 +241,9 @@ async function getHotelsLayer() {
   let url = "data/hotels.geojson";
   let response = await axios.get(url);
 
-  var hotelsIcon = new icon({ iconUrl: "/icons/hotel.png" });
+  var hotelsIcon = new icon({ iconUrl: "./icons/hotel.png" });
   var hoverHotelsIcon = new hoverIcon({
-    iconUrl: "/icons/hotel.png",
+    iconUrl: "./icons/hotel.png",
   });
 
   for (let obj of response.data.features) {
@@ -288,9 +288,9 @@ async function getMrtLayer() {
     "https://gist.githubusercontent.com/raphodn/aca68c6e5b704d021fe0b0d8a376f4aa/raw/40d3d455da164bf8046a1fc6e51a5dc1ed2a0fa6/singapore-mrt.min.geojson";
   let response = await axios.get(url);
 
-  var mrtIcon = new icon({ iconUrl: "/icons/mrt.png" });
+  var mrtIcon = new icon({ iconUrl: "./icons/mrt.png" });
   var hoverMrtIcon = new hoverIcon({
-    iconUrl: "/icons/mrt.png",
+    iconUrl: "./icons/mrt.png",
   });
 
   let layer = L.geoJson(response.data, {
