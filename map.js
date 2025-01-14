@@ -31,9 +31,9 @@ function addResultsToMap(results, map) {
   const searchResultsContainer = document.querySelector("#search-results");
   searchResultsContainer.innerHTML = "";
 
-  var findIcon = new icon({ iconUrl: "/icons/find.png" });
+  var findIcon = new icon({ iconUrl: "./icons/find.png" });
   var hoverFindIcon = new hoverIcon({
-    iconUrl: "/icons/find.png",
+    iconUrl: "./icons/find.png",
   });
 
   for (let result of results.results) {

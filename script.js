@@ -42,8 +42,6 @@ var hoverIcon = L.Icon.extend({
   },
 });
 
-// Places layers
-
 //REFERENCE
 async function getHawkerLayer() {
   let url = "data/hawker.geojson";
@@ -445,8 +443,6 @@ FEATURES/LAYOUT?
 --hawker centres x
 --market and food centre x
 Do clustering too if needed
-
-- can use custom icons for markers: https://leafletjs.com/examples/custom-icons/
 
 Menu items
 - history?
