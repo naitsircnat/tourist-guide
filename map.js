@@ -51,7 +51,6 @@ function addResultsToMap(results, map) {
           result.description == null ? "-" : result.description
         }</p>
         <p><b>Address</b>: ${result.location.formatted_address}</p>
-        <p><b>Rating</b>: ${result.rating == null ? "-" : result.rating}</p>
         <p><b>Opening Hours</b>: ${
           result.hours.display == null ? "-" : result.hours.display
         }</p>
@@ -60,7 +59,7 @@ function addResultsToMap(results, map) {
           const photos = await getPhotoFromFoursquare(result.fsq_id);
           if (photos && photos.length > 0) {
             const firstPhoto = photos[0];
-            const photoUrl = firstPhoto.prefix + "280x180" + firstPhoto.suffix;
+            const photoUrl = firstPhoto.prefix + "280x160" + firstPhoto.suffix;
             popUpHtml.querySelector("img").src = photoUrl;
             popUpHtml.querySelector("img").style.display = "block";
           }
@@ -82,8 +81,24 @@ function addResultsToMap(results, map) {
     });
 
     marker.addEventListener("click", function () {
-      map.flyTo([lat, lng], 16);
-      marker.openPopup;
+      // map.flyTo([lat, lng], 16);
+
+      var targetLatLng = [lat, lng];
+
+      var offsetX = 0;
+      var offsetY = -15;
+      var targetPoint = map.latLngToContainerPoint(targetLatLng);
+
+      var adjustedPoint = L.point(
+        targetPoint.x + offsetX,
+        targetPoint.y + offsetY
+      );
+
+      var adjustedLatLng = map.containerPointToLatLng(adjustedPoint);
+
+      map.flyTo(adjustedLatLng, 16);
+
+      marker.openPopup();
     });
 
     marker.addTo(resultsLayer);
@@ -100,7 +115,23 @@ function addResultsToMap(results, map) {
     </div>`;
 
     card.addEventListener("click", function () {
-      map.flyTo([lat, lng], 16);
+      // map.flyTo([lat, lng], 16);
+
+      var targetLatLng = [lat, lng];
+
+      var offsetX = 0;
+      var offsetY = -15;
+
+      var targetPoint = map.latLngToContainerPoint(targetLatLng);
+
+      var adjustedPoint = L.point(
+        targetPoint.x + offsetX,
+        targetPoint.y + offsetY
+      );
+
+      var adjustedLatLng = map.containerPointToLatLng(adjustedPoint);
+
+      map.flyTo(adjustedLatLng, 16);
       marker.openPopup();
     });
 
