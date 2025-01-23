@@ -42,7 +42,6 @@ var hoverIcon = L.Icon.extend({
   },
 });
 
-//REFERENCE
 async function getHawkerLayer() {
   let url = "data/hawker.geojson";
   let response = await axios.get(url);
@@ -133,7 +132,6 @@ async function getAttractionsLayer() {
     marker.addTo(attractionsLayer);
   }
 }
-//REFERENCE
 
 async function getSupermarketsLayer() {
   let url = "data/supermarkets.geojson";
@@ -155,7 +153,7 @@ async function getSupermarketsLayer() {
     const name = tds[0].innerHTML;
     const block = tds[1].innerHTML;
     const street = tds[2].innerHTML;
-    // Some locations don't have a unit number
+    // As some locations don't have a unit number
     var unit = tds[3].innerHTML;
     const postalCode = tds[4].innerHTML;
 
@@ -424,67 +422,6 @@ async function getLayers(map) {
   setParent(htmlObject, a);
 }
 
-// Add places layers
 window.addEventListener("DOMContentLoaded", async function () {
   await getLayers(map);
 });
-
-/*
-FEATURES/LAYOUT?
-- map
-- selectors of what things to display
---tourist attractions x
---hiking x
---cycling x
---parks and nature reserves d
---hotels x 
---mrt (https://gist.githubusercontent.com/raphodn/aca68c6e5b704d021fe0b0d8a376f4aa/raw/40d3d455da164bf8046a1fc6e51a5dc1ed2a0fa6/singapore-mrt.min.geojson) x
---supermarket x
---hawker centres x
---market and food centre x
-Do clustering too if needed
-
-Menu items
-- history?
-- economy?
-- geography?
-can refer to london map site for other features: https://www.londoncitybreak.com/map
-
-ask chatgpt what else good to include?
-
-Can link to resources in
-- https://www.visitsingapore.com/travel-tips/travelling-to-singapore/itineraries/?cmp=SEM_STB-MA24-106-SG-SEM_SG_DC_ENG_NA_NA_NONE_BM-Itinerary%26GuidePA-GN_NA_GOOG_SEA_AO_Cross_XTG&gad_source=1&gclid=Cj0KCQiA6Ou5BhCrARIsAPoTxrCAEMNU7z34-DwLeNDcZayyKHOTNd2AHxfNYpAml3Pbs_c0EjvaG7caAnXXEALw_wcB&gclsrc=aw.ds
-- klook singapore
-
-Layouts/MoodBoard:
-Figma: https://www.figma.com/design/dQn0HsKKoXaMcMvrl5vLbI/SG-tourist-map?node-id=0-1&node-type=canvas&t=wVkyddyzdrAFMNPI-0
-
-RESOURCES
-- requirements: https://docs.google.com/document/d/1iVANh3aaqpX0VSFscP7j-86M1BOkAMGtOuJRmnYynD0/edit?tab=t.0#heading=h.5gcv0ns1dl74
-- foursquare search functionality: https://scrawny-dingo-56a.notion.site/Foursquare-Leaflet-5c1bb194ca094dce895e7c02d8ae83d5
-- leaflet example tutorials: 
-https://leafletjs.com/examples.html
-https://docs.maptiler.com/leaflet/examples/
-
-STUFF TO INCLUDE IN POP-UP
-- NAME
-- RATING
-- IMAGE
-- DESCRIPTION
-- ADDRESS
-- OPENING HOURS
-- SOCIAL MEDIA
-
-
-
-PENDING
-- offset for search pop-up flyto
-- remove hover effect for Find Something and Near
-- increase footer text size
-- pop-up images for places? available?
-- nav bar layout for desktop and mobile
-- carousel image for search pop up?
-- add ghosts text for text inputs etc.
-- adjust colours for geojson
-- refactoring
-*/
