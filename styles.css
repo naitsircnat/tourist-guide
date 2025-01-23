@@ -21,10 +21,6 @@ label:hover {
   box-shadow: none;
 }
 
-/* .leaflet-control-layers-selector {
-  display: none;
-} */
-
 #map {
   height: 70vh;
   width: 100%;

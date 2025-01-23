@@ -81,8 +81,6 @@ function addResultsToMap(results, map) {
     });
 
     marker.addEventListener("click", function () {
-      // map.flyTo([lat, lng], 16);
-
       var targetLatLng = [lat, lng];
 
       var offsetX = 0;
@@ -115,8 +113,6 @@ function addResultsToMap(results, map) {
     </div>`;
 
     card.addEventListener("click", function () {
-      // map.flyTo([lat, lng], 16);
-
       var targetLatLng = [lat, lng];
 
       var offsetX = 0;
