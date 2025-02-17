@@ -359,8 +359,6 @@ async function getParksNatureReservesLayer() {
   let url = "data/parks-nature-reserves.geojson";
   let response = await axios.get(url);
 
-  console.log(response.data);
-
   let layer = L.geoJson(response.data, {
     onEachFeature: function (feature, layer) {
       let e = document.createElement("div");
