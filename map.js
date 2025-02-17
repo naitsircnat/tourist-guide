@@ -19,7 +19,6 @@ let getPhotoFromFoursquare = async (fsqId) => {
       Authorization: API_KEY,
     },
   });
-  console.log(response.data);
   return response.data;
 };
 
@@ -52,7 +51,7 @@ function addResultsToMap(results, map) {
         }</p>
         <p><b>Address</b>: ${result.location.formatted_address}</p>
         <p><b>Opening Hours</b>: ${
-          result.hours.display == null ? "-" : result.hours.display
+          result.hours == null ? "-" : result.hours.display
         }</p>
       `;
         async function getPicture() {

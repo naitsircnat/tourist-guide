@@ -25,9 +25,12 @@ async function searchGeneral(lat, lng, searchTerms) {
 async function searchNear(query, nearQuery) {
   const response = await axios.get(`${BASE_API_URL}/places/search`, {
     params: {
+      query: encodeURI(query),
       near: nearQuery,
       sort: "DISTANCE",
       limit: 50,
+      fields:
+        "name,rating,description,social_media,location,hours,geocodes,fsq_id",
     },
     headers: {
       Accept: "application/json",
