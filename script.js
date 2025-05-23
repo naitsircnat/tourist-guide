@@ -382,42 +382,61 @@ async function getParksNatureReservesLayer() {
   layer.addTo(parksNatureReservesLayer);
 }
 
+const placesLoadingSpinner = document.getElementById("places-loading-spinner");
+const placesContainer = document.getElementById("places");
+
+function setParent(el, newParent) {
+  newParent.appendChild(el);
+}
+
 async function getLayers(map) {
-  await getHawkerLayer();
-  await getAttractionsLayer();
-  await getSupermarketsLayer();
-  await getMarketsFoodCentresLayer();
-  await getHotelsLayer();
-  await getMrtLayer();
-  await getBikingCnrLayer();
-  await getHikingCnrLayer();
-  await getParksNatureReservesLayer();
-
-  let overlays = {
-    "Hawker Centres": hawkerLayer,
-    Attractions: attractionsLayer,
-    Supermarkets: supermarketsLayer,
-    "Markets & Food Centres": marketsFoodCentresLayer,
-    Hotels: hotelsLayer,
-    MRT: mrtLayer,
-    "Biking (Central Nature Reserve)": bikingCnrLayer,
-    "Hiking (Central Nature Reserve)": hikingCnrLayer,
-    "Parks & Nature Reserves": parksNatureReservesLayer,
-  };
-
-  var control = L.control.layers(null, overlays, { collapsed: false });
-  control.addTo(map);
-
-  // Move places selectors to outside of map
-  var htmlObject = control.getContainer();
-
-  var a = document.getElementById("places");
-
-  function setParent(el, newParent) {
-    newParent.appendChild(el);
+  if (placesLoadingSpinner) {
+    placesLoadingSpinner.style.display = "flex";
   }
 
-  setParent(htmlObject, a);
+  try {
+    await getHawkerLayer();
+    await getAttractionsLayer();
+    await getSupermarketsLayer();
+    await getMarketsFoodCentresLayer();
+    await getHotelsLayer();
+    await getMrtLayer();
+    await getBikingCnrLayer();
+    await getHikingCnrLayer();
+    await getParksNatureReservesLayer();
+
+    let overlays = {
+      "Hawker Centres": hawkerLayer,
+      Attractions: attractionsLayer,
+      Supermarkets: supermarketsLayer,
+      "Markets & Food Centres": marketsFoodCentresLayer,
+      Hotels: hotelsLayer,
+      MRT: mrtLayer,
+      "Biking (Central Nature Reserve)": bikingCnrLayer,
+      "Hiking (Central Nature Reserve)": hikingCnrLayer,
+      "Parks & Nature Reserves": parksNatureReservesLayer,
+    };
+
+    var control = L.control.layers(null, overlays, { collapsed: false });
+    control.addTo(map);
+
+    var htmlObject = control.getContainer();
+
+    if (placesContainer) {
+      placesContainer.innerHTML = "";
+      setParent(htmlObject, placesContainer);
+    }
+  } catch (error) {
+    console.error("Error loading map layers:", error);
+    if (placesContainer) {
+      placesContainer.innerHTML =
+        '<p class="text-danger">Failed to load map data. Please try again.</p>';
+    }
+  } finally {
+    if (placesLoadingSpinner) {
+      placesLoadingSpinner.style.display = "none";
+    }
+  }
 }
 
 window.addEventListener("DOMContentLoaded", async function () {
