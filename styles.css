@@ -75,8 +75,9 @@ footer {
 }
 
 footer p {
-  font-size: 12px;
-  font-weight: 100;
+  font-size: 14px;
+  font-weight: 200;
+  letter-spacing: 0.5px;
   color: whitesmoke;
   text-align: center;
 }
