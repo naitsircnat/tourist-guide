@@ -383,7 +383,6 @@ async function getParksNatureReservesLayer() {
 }
 
 const placesLoadingSpinner = document.getElementById("places-loading-spinner");
-
 const placesContainer = document.getElementById("places");
 
 function setParent(el, newParent) {
@@ -391,36 +390,52 @@ function setParent(el, newParent) {
 }
 
 async function getLayers(map) {
-  await getHawkerLayer();
-  await getAttractionsLayer();
-  await getSupermarketsLayer();
-  await getMarketsFoodCentresLayer();
-  await getHotelsLayer();
-  await getMrtLayer();
-  await getBikingCnrLayer();
-  await getHikingCnrLayer();
-  await getParksNatureReservesLayer();
+  if (placesLoadingSpinner) {
+    placesLoadingSpinner.style.display = "flex";
+  }
 
-  let overlays = {
-    "Hawker Centres": hawkerLayer,
-    Attractions: attractionsLayer,
-    Supermarkets: supermarketsLayer,
-    "Markets & Food Centres": marketsFoodCentresLayer,
-    Hotels: hotelsLayer,
-    MRT: mrtLayer,
-    "Biking (Central Nature Reserve)": bikingCnrLayer,
-    "Hiking (Central Nature Reserve)": hikingCnrLayer,
-    "Parks & Nature Reserves": parksNatureReservesLayer,
-  };
+  try {
+    await getHawkerLayer();
+    await getAttractionsLayer();
+    await getSupermarketsLayer();
+    await getMarketsFoodCentresLayer();
+    await getHotelsLayer();
+    await getMrtLayer();
+    await getBikingCnrLayer();
+    await getHikingCnrLayer();
+    await getParksNatureReservesLayer();
 
-  var control = L.control.layers(null, overlays, { collapsed: false });
-  control.addTo(map);
+    let overlays = {
+      "Hawker Centres": hawkerLayer,
+      Attractions: attractionsLayer,
+      Supermarkets: supermarketsLayer,
+      "Markets & Food Centres": marketsFoodCentresLayer,
+      Hotels: hotelsLayer,
+      MRT: mrtLayer,
+      "Biking (Central Nature Reserve)": bikingCnrLayer,
+      "Hiking (Central Nature Reserve)": hikingCnrLayer,
+      "Parks & Nature Reserves": parksNatureReservesLayer,
+    };
 
-  var htmlObject = control.getContainer();
+    var control = L.control.layers(null, overlays, { collapsed: false });
+    control.addTo(map);
 
-  if (placesContainer) {
-    placesContainer.innerHTML = "";
-    setParent(htmlObject, placesContainer);
+    var htmlObject = control.getContainer();
+
+    if (placesContainer) {
+      placesContainer.innerHTML = "";
+      setParent(htmlObject, placesContainer);
+    }
+  } catch (error) {
+    console.error("Error loading map layers:", error);
+    if (placesContainer) {
+      placesContainer.innerHTML =
+        '<p class="text-danger">Failed to load map data. Please try again.</p>';
+    }
+  } finally {
+    if (placesLoadingSpinner) {
+      placesLoadingSpinner.style.display = "none";
+    }
   }
 }
 
